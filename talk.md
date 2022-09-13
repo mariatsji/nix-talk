@@ -52,7 +52,7 @@ The purely functional package manager
 
 # nixpkgs
 
-* A collection of nix'ified software, available on github
+* A collection of nix'ified software, available on GitHub
 * Can be used in nix-expressions through fetchers
 * Gives a specific version of e.g. gcc
 
@@ -151,12 +151,47 @@ Simple!
 
 # The nix shell
 
+Allows any nixified package to be brought into the shell
+
+```bash
+> nix-shell -p python2 python3 -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/ee01de29d2f58d56b1be4ae24c24bd91c5380cea.tar.gz
+```
+
+Will put me in a shell with python2 and python3
+
+```bash
+nix-shell> python2 --help
+nix-shell> python3 --help
+```
+
 ---
 
-# Selling points
+# Upsides
+
+- reproducible builds
+- does not alter your system (only your nix-store)
+- you can have every version of python available without conflicts
+- efficient caching
+
+---
+
+# Downsites
+
+- long build times from empty caches
+- language can be weird
+- docs can be sparse
 
 ---
 
 # Flakes
 
 Beyond the scope of this talk
+
+---
+
+# Thanks!
+
+@SjurMillidahl
+smillida@cisco.com
+
+---
