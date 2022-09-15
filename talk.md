@@ -53,7 +53,7 @@ The purely functional package manager
 # nixpkgs
 
 * A collection of nix'ified software, available on GitHub
-* Can be used in nix-expressions through fetchers
+* Can be used in nix-expressions
 * Gives a specific version of e.g. gcc
 
 ---
@@ -125,11 +125,21 @@ let
       args = [ ./builder.sh ];
       gcc = pkgs.gcc;
       coreutils = pkgs.coreutils;
-      src = src;
-      system = builtins.currentSystem;
+      inherit src system;
     };
 
-in pureBuildFunction nixpkgs ./simple.c builtins.currentSystem
+in pureBuildFunction nixpkgs ./simple.c "x86_64-darwin"
+```
+
+---
+
+# Nix #2
+
+builder.sh
+```sh
+export PATH="$coreutils/bin:$gcc/bin"
+mkdir $out
+gcc -o $out/simple $src
 ```
 
 ---
@@ -142,7 +152,7 @@ in pureBuildFunction nixpkgs ./simple.c builtins.currentSystem
 ```
 
 ```bash
-> /nix/store/a22p8f72pghn22w168a72pisicnncmmh-simple
+> /nix/store/a22p8f72pghn22w168a72pisicnncmmh-simple/simple
 Simple!
 ```
 
@@ -172,6 +182,7 @@ nix-shell> python3 --help
 - does not alter your system (only your nix-store)
 - you can have every version of python available without conflicts
 - efficient caching
+- easily override e.g. gcc with an unmerged PR
 
 ---
 
@@ -180,6 +191,7 @@ nix-shell> python3 --help
 - long build times from empty caches
 - language can be weird
 - docs can be sparse
+- disk use
 
 ---
 

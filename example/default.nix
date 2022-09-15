@@ -13,8 +13,7 @@ let
       args = [ ./builder.sh ];
       gcc = pkgs.gcc;
       coreutils = pkgs.coreutils;
-      src = src;
-      system = builtins.currentSystem;
+      inherit src system;
     };
 
-in pureBuildFunction nixpkgs ./simple.c builtins.currentSystem
+in pureBuildFunction nixpkgs ./simple.c "x86_64-darwin"
