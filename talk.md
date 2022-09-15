@@ -18,6 +18,52 @@ patat:
 
 ---
 
+# Pure functions
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|---------|
+**a**&nbsp;->&nbsp;|&nbsp;**machine**&nbsp;|&nbsp;->&nbsp;**b**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|---------|
+
+* A mapping of **a's** to **b's**
+* Every **a** always results in the same **b**
+* Morally equal to a **HashMap a b**
+
+---
+
+# Building software
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-----|
+**simple.c**&nbsp;->&nbsp;|&nbsp;**gcc**&nbsp;|&nbsp;->&nbsp;**.exe**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-----|
+
+* The machine has gcc "inside it"
+* Altering gcc in the machine alters the build function
+* Hence impure build
+
+---
+
+# Nix
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**gcc**&nbsp;->&nbsp;|---------|
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;**machine**&nbsp;|&nbsp;->&nbsp;**.exe**
+**simple.c**&nbsp;->&nbsp;|---------|
+
+
+* gcc is now an argument
+* The build function is pure again
+* Hence the build is pure
+
+---
+
+# What do you mean gcc is an argument
+
+* gcc is called a **derivation** here
+* derivations can be built by fetching source and building it
+* fetchers can fetch a source from .tar.gz or GitHub
+* nixpkgs has recipes for **derivations** of a lot of tools
+
+---
+
 # Language
 
 - Purely functional
@@ -38,38 +84,15 @@ in { result = "Hello ${builtins.elemAt myList 1}"; }
 
 ---
 
-# Operating system
-
-- Beyond the scope of this talk!
-
----
-
-# Package manager
-
-The purely functional package manager
-
----
-
 # nixpkgs
 
-* A collection of nix'ified software, available on GitHub
+* A collection of derivations and functions
 * Can be used in nix-expressions
 * Gives a specific version of e.g. gcc
 
 ---
 
-## Pure functions
-
-```haskell
-a -> b
-```
-* A mapping of a's to b's
-* Every a always results in the same b
-* Morally equal to a HashMap
-
----
-
-## A pure build of software
+## Back to the pure build
 
 simple.c
 ```c
@@ -94,19 +117,12 @@ build.sh
 # The nix way
 
 ```bash
-> $(gcc) -o simple $(simple.c)
+> $gcc -o simple $src
 ```
-
-gcc&nbsp;->&nbsp;&nbsp;|-----------|
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;builder&nbsp;&nbsp;|&nbsp;-> derivation
-src&nbsp;->&nbsp;&nbsp;|-----------|
-
-* The two problematic parts of this build can be made into variables.
-* Now all that is left is to write a function which accepts these variables
 
 ---
 
-# Nix
+# .nix example
 
 build.nix
 ```nix
@@ -133,7 +149,7 @@ in pureBuildFunction nixpkgs ./simple.c "x86_64-darwin"
 
 ---
 
-# Nix #2
+# build-script
 
 builder.sh
 ```sh
@@ -144,7 +160,7 @@ gcc -o $out/simple $src
 
 ---
 
-# Let nix invoke our code
+# Let nix build our code
 
 ```bash
 > nix-build build.nix
@@ -179,25 +195,27 @@ nix-shell> python3 --help
 # Upsides
 
 - reproducible builds
-- does not alter your system (only your nix-store)
+- does not alter your entire system (only your nix-store)
 - you can have every version of python available without conflicts
 - efficient caching
+- build small, reproducible docker-images
 - easily override e.g. gcc with an unmerged PR
 
 ---
 
 # Downsites
 
-- long build times from empty caches
 - language can be weird
-- docs can be sparse
-- disk use
+- long build times from empty caches
+- docs can be.. sparse
+- disk use can be.. significant
 
 ---
 
-# Flakes
+# No time to talk about
 
-Beyond the scope of this talk
+- Nix flakes
+- NixOS
 
 ---
 
