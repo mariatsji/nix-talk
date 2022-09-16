@@ -9,11 +9,9 @@ let
     with pkgs;
      derivation {
       name = "simple";
-      builder = "${pkgs.bash}/bin/bash";
+      builder = "${bash}/bin/bash";
       args = [ ./builder.sh ];
-      gcc = pkgs.gcc;
-      coreutils = pkgs.coreutils;
-      inherit src system;
+      inherit src system gcc coreutils;
     };
 
 in pureBuildFunction nixpkgs ./simple.c "x86_64-darwin"
