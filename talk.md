@@ -28,9 +28,9 @@ monofont: Monaco
 
 # Pure functions
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|---------|  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\-\-\-\-\-\-\-\-\-|  
 **a**&nbsp;->&nbsp;|&nbsp;**machine**&nbsp;|&nbsp;->&nbsp;**b**  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|---------|  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\-\-\-\-\-\-\-\-\-|  
 
 * A mapping of **a's** to **b's**
 * Every **a** always results in the same **b**
@@ -40,9 +40,9 @@ monofont: Monaco
 
 # Building software
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-----|  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\-\-\-\-\-|  
 **simple.c**&nbsp;->&nbsp;|&nbsp;**gcc**&nbsp;|&nbsp;->&nbsp;**.exe**  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-----|  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\-\-\-\-\-|  
 
 * The machine has gcc "inside it"
 * Altering gcc in the machine alters the build function
@@ -52,9 +52,9 @@ monofont: Monaco
 
 # Nix
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**gcc**&nbsp;->&nbsp;|---------|  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**gcc**&nbsp;->&nbsp;|\-\-\-\-\-\-\-\-\-|  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;**machine**&nbsp;|&nbsp;->&nbsp;**.exe**  
-**simple.c**&nbsp;->&nbsp;|---------|  
+**simple.c**&nbsp;->&nbsp;|\-\-\-\-\-\-\-\-\-|  
 
 
 * gcc is now an argument
