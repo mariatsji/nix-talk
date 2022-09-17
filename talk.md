@@ -8,7 +8,15 @@ patat:
   margins:
     left: 10
     right: 10
+mainfont: Monaco
+monofont: Monaco
 ...
+
+# TechZone 22
+
+![nix](img/nix.png)
+
+---
 
 # What is Nix
 
@@ -20,9 +28,9 @@ patat:
 
 # Pure functions
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|---------|
-**a**&nbsp;->&nbsp;|&nbsp;**machine**&nbsp;|&nbsp;->&nbsp;**b**
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|---------|
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|---------|  
+**a**&nbsp;->&nbsp;|&nbsp;**machine**&nbsp;|&nbsp;->&nbsp;**b**  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|---------|  
 
 * A mapping of **a's** to **b's**
 * Every **a** always results in the same **b**
@@ -32,9 +40,9 @@ patat:
 
 # Building software
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-----|
-**simple.c**&nbsp;->&nbsp;|&nbsp;**gcc**&nbsp;|&nbsp;->&nbsp;**.exe**
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-----|
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-----|  
+**simple.c**&nbsp;->&nbsp;|&nbsp;**gcc**&nbsp;|&nbsp;->&nbsp;**.exe**  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-----|  
 
 * The machine has gcc "inside it"
 * Altering gcc in the machine alters the build function
@@ -44,9 +52,9 @@ patat:
 
 # Nix
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**gcc**&nbsp;->&nbsp;|---------|
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;**machine**&nbsp;|&nbsp;->&nbsp;**.exe**
-**simple.c**&nbsp;->&nbsp;|---------|
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**gcc**&nbsp;->&nbsp;|---------|  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;**machine**&nbsp;|&nbsp;->&nbsp;**.exe**  
+**simple.c**&nbsp;->&nbsp;|---------|  
 
 
 * gcc is now an argument
@@ -110,7 +118,7 @@ build.sh
 
 # An excellent suggestion, sir, with just two minor drawbacks
 
-![](kryten.png)
+![kryten](img/kryten.png)
 
 ---
 
@@ -178,14 +186,17 @@ Simple!
 Allows any nixified package to be brought into the shell
 
 ```bash
-> nix-shell -p python2 python3 -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/ee01de29d2f58d56b1be4ae24c24bd91c5380cea.tar.gz
+> nix-shell --pure -p python2 python3 -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/ee01de29d2f58d56b1be4ae24c24bd91c5380cea.tar.gz
 ```
 
 Will put me in a shell with python2 and python3
 
 ```bash
-nix-shell> python2 --help
-nix-shell> python3 --help
+nix-shell> python2 --version
+Python 2.7.18
+
+nix-shell> python3 --version
+Python 3.10.6
 ```
 
 ---
