@@ -20,8 +20,8 @@ monofont: Monaco
 
 # What is Nix
 
-- language (functional)
 - operating system (NixOS)
+- language (functional)
 - package manager
 
 ---
@@ -66,9 +66,9 @@ monofont: Monaco
 # What do you mean gcc is an argument
 
 * gcc is called a **derivation** here
-* derivations can be built by fetching source and building it
-* fetchers can fetch a source from .tar.gz or GitHub
-* nixpkgs has recipes for **derivations** of a lot of tools
+* A derivation is a tool or lib that is built with nix
+* Can be found in a repo called Nixpkgs
+* Can be built from source
 
 ---
 
@@ -101,11 +101,12 @@ in { result = "Hello ${builtins.elemAt myList 1}"; }
 
 ---
 
-# nixpkgs
+# Nixpkgs
 
-* A collection of derivations and functions
+* A collection of derivations and util-functions
 * Can be used in nix-expressions
 * Gives a specific version of e.g. gcc
+* https://search.nixos.org/packages
 
 ---
 
@@ -122,12 +123,6 @@ build.sh
 ```bash
 > gcc -o simple simple.c
 ```
-
----
-
-# An excellent suggestion, sir, with just two minor drawbacks
-
-![kryten](img/kryten.png)
 
 ---
 
@@ -192,7 +187,7 @@ Simple!
 
 # The nix shell
 
-Allows any nixified package to be brought into the shell
+Allows any nixified package to be brought into scope
 
 ```bash
 > nix-shell --pure -p python2 python3 -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/ee01de29d2f58d56b1be4ae24c24bd91c5380cea.tar.gz
