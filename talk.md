@@ -72,6 +72,15 @@ monofont: Monaco
 
 ---
 
+# How to Nixify a build
+
+* Express tools and libs as arguments
+* Such arguments must be derivations
+* Either find derivation in nixpkgs
+* OR transform it to a derivation yourself
+
+---
+
 # Language
 
 - Purely functional
@@ -85,7 +94,7 @@ monofont: Monaco
 ```nix
 let
   increase = x: x + 1;
-  myList = [ 2 "world" false ];
+  myList = [ (increase 2) "world" false ];
 
 in { result = "Hello ${builtins.elemAt myList 1}"; }
 ```
