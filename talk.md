@@ -20,9 +20,9 @@ monofont: Monaco
 
 # What is Nix
 
-- operating system (NixOS)
-- language (functional)
-- package manager
+- Operating system (NixOS)
+- Language (functional, declarative)
+- Package manager
 
 ---
 
@@ -67,7 +67,7 @@ monofont: Monaco
 
 * gcc is called a **derivation** here
 * A derivation is a tool or lib that is built with nix
-* Can be found in a repo called Nixpkgs
+* Can be found in a repo called nixpkgs
 * Can be built from source
 
 ---
@@ -84,6 +84,8 @@ monofont: Monaco
 # Language
 
 - Purely functional
+- Declarative
+- Lazy
 - Dynamically typed
 - Weird at first
 
@@ -91,6 +93,7 @@ monofont: Monaco
 
 # Language example
 
+example.nix
 ```nix
 let
   increase = x: x + 1;
@@ -99,9 +102,17 @@ let
 in { result = "Hello ${builtins.elemAt myList 1}"; }
 ```
 
+bash
+```bash
+> nix eval -f example.nix
+```
+output
+```nix
+{ result = "Hello world"; }
+```
 ---
 
-# Nixpkgs
+# nixpkgs
 
 * A collection of derivations and util-functions
 * Can be used in nix-expressions
@@ -170,7 +181,7 @@ gcc -o $out/simple $src
 
 ---
 
-# Let nix build our code
+# Let Nix build our code
 
 ```bash
 > nix-build build.nix
@@ -185,12 +196,12 @@ Simple!
 ---
 
 
-# The nix shell
+# The Nix shell
 
 Allows any nixified package to be brought into scope
 
 ```bash
-> nix-shell --pure -p python2 python3 -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/ee01de29d2f58d56b1be4ae24c24bd91c5380cea.tar.gz
+> nix-shell --pure -p python2 python3
 ```
 
 Will put me in a shell with python2 and python3
@@ -234,7 +245,10 @@ Python 3.10.6
 
 # Thanks!
 
+Talks: A gentle introduction to Nix
+
 @SjurMillidahl
+
 smillida@cisco.com
 
 ---
