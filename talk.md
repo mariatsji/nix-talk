@@ -6,8 +6,10 @@ patat:
     backend: auto
   wrap: false
   margins:
-    left: 10
-    right: 10
+    top: 2
+    bottom: 2
+    left: 8
+    right: 4
 mainfont: Monaco
 monofont: Monaco
 ...
